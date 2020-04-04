@@ -1,40 +1,46 @@
-###############################################################################
-#                          Generated on phpdocker.io                          #
-###############################################################################
 version: "3.7"
-services:
 
+networks:
+  skeleton:
+
+services:
     mysql:
       image: mysql:8.0
-      container_name: skeletonjglemp-mysql
+      container_name: mysql
       working_dir: /application
       volumes:
         - .:/application
       environment:
         - MYSQL_ROOT_PASSWORD=root
         - MYSQL_DATABASE=skeletondb
-        - MYSQL_USER=root
+        - MYSQL_USER=skeleton
         - MYSQL_PASSWORD=root
       ports:
         - "8090:3306"
+      networks:
+        skeleton:
 
-    webserver:
+    nginx:
       image: nginx:alpine
-      container_name: skeletonjglemp-webserver
+      container_name: nginx-webserver
       working_dir: /application
       volumes:
           - .:/application
           - ./phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       ports:
        - "8088:80"
+      networks:
+        skeleton:
 
     php-fpm:
       build: phpdocker/php-fpm
-      container_name: skeletonjglemp-php-fpm
+      container_name: php-fpm
       working_dir: /application
       volumes:
         - .:/application
         - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
+      networks:
+        skeleton:
 
     phpmyadmin:
       image: phpmyadmin/phpmyadmin
@@ -44,7 +50,10 @@ services:
       ports:
         - "8089:80"
       environment:
-        PMA_HOST: root
+        PMA_HOST: mysql
         MYSQL_USER: root
         MYSQL_ROOT_PASSWORD: root
+      tty: false
       restart: always
+      networks:
+        skeleton:
