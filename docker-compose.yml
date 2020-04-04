@@ -4,19 +4,31 @@ networks:
   skeleton:
 
 services:
-  app:
-    container_name: skeleton-lemp-app
-    environment:
-      APP_ENV: prod
-      DATABASE_URL: mysql://user:password@host:3306/database
-    tty: true
+  nginx:
+    image: nginx:alpine
+    container_name: skeleton-nginx-webserver
+    working_dir: /application
     depends_on:
-      - nginx
+      - php-fpm
+      - mysql
     volumes:
       - .:/application
+      - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8088:80"
     networks:
       skeleton:
 
+  php-fpm:
+    build: docker/php-fpm
+    container_name: skeleton-php-fpm
+    working_dir: /application
+    tty: true
+    volumes:
+      - .:/application
+      - ./docker/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
+    networks:
+      skeleton:
 
   mysql:
     image: mysql:8.0
@@ -32,32 +44,6 @@ services:
       - MYSQL_PASSWORD=root
     ports:
       - "8090:3306"
-    networks:
-      skeleton:
-
-  nginx:
-    image: nginx:alpine
-    container_name: skeleton-nginx-webserver
-    working_dir: /application
-    depends_on:
-      - php-fpm
-      - mysql
-    volumes:
-        - .:/application
-        - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-    ports:
-     - "8088:80"
-    networks:
-      skeleton:
-
-  php-fpm:
-    build: docker/php-fpm
-    container_name: skeleton-php-fpm
-    working_dir: /application
-    tty: false
-    volumes:
-      - .:/application
-      - ./docker/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
     networks:
       skeleton:
 
