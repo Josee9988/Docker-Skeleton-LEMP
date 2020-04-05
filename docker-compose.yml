@@ -1,4 +1,4 @@
-version: "3"
+version: "3.7"
 
 networks:
   skeleton:
@@ -9,7 +9,7 @@ services:
     container_name: skeleton-nginx-webserver
     working_dir: /application
     env_file:
-      - ".env.docker"
+      - "docker/.env"
     depends_on:
       - php-fpm
       - mysql
@@ -18,16 +18,16 @@ services:
       - ./docker/nginx/logs:/var/log/nginx
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     ports:
-      - "80:80"
+      - "${HTTP_PORT}:80"
     networks:
       skeleton:
 
   php-fpm:
-    build: ""
+    build: "./docker"
     container_name: skeleton-php-fpm
     working_dir: /application
     env_file:
-      - ".env.docker"
+      - "docker/.env"
     tty: true
     volumes:
       - .:/application
@@ -41,7 +41,7 @@ services:
     working_dir: /application
     tty: true
     env_file:
-      - ".env.docker"
+      - "docker/.env"
     volumes:
       - .:/application
     environment:
@@ -65,7 +65,7 @@ services:
       MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: $${MYSQL_ROOT_PASSWORD}
     ports:
-      - "9000:80"
+      - "${PHPMYADMIN_PORT}:80"
     tty: false
     networks:
       skeleton:
