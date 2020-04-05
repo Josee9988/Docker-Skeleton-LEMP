@@ -13,7 +13,7 @@ services:
       - mysql
     volumes:
       - .:/application
-      - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     ports:
       - "8000:80"
     networks:
@@ -35,13 +35,15 @@ services:
     container_name: skeleton-mysql
     working_dir: /application
     tty: true
+    env_file:
+      - "docker/.env.docker"
     volumes:
       - .:/application
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=skeletondb
-      - MYSQL_USER=dev
-      - MYSQL_PASSWORD=1234
+      MYSQL_ROOT_PASSWORD: $${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: $${MYSQL_DATABASE}
+      MYSQL_USER: $${MYSQL_USER}
+      MYSQL_PASSWORD: $${MYSQL_PASSWORD}
     ports:
       - "4306:3306"
     restart: always
@@ -59,7 +61,7 @@ services:
     environment:
       PMA_HOST: mysql
       MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: $${MYSQL_ROOT_PASSWORD}
     tty: false
     networks:
       skeleton:
