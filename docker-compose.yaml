@@ -1,4 +1,4 @@
-version: "3"
+version: "3.7"
 
 networks:
   skeleton:
@@ -6,10 +6,8 @@ networks:
 services:
   nginx:
     image: nginx:alpine
-    container_name: skeleton-nginx-webserver
+    container_name: ${APPLICATION_NAME}-nginx-webserver
     working_dir: /application
-    env_file:
-      - ".env"
     depends_on:
       - php-fpm
       - mysql
@@ -23,11 +21,9 @@ services:
       skeleton:
 
   php-fpm:
-    build: ""
-    container_name: skeleton-php-fpm
+    build: "./docker"
+    container_name: ${APPLICATION_NAME}-php-fpm
     working_dir: /application
-    env_file:
-      - ".env"
     tty: true
     volumes:
       - .:/application
@@ -37,11 +33,9 @@ services:
 
   mysql:
     image: mysql:8.0
-    container_name: skeleton-mysql
+    container_name: ${APPLICATION_NAME}-mysql
     working_dir: /application
     tty: true
-    env_file:
-      - ".env"
     volumes:
       - .:/application
     environment:
@@ -50,14 +44,14 @@ services:
       MYSQL_USER: $${MYSQL_USER}
       MYSQL_PASSWORD: $${MYSQL_PASSWORD}
     ports:
-      - "4306:3306"
+      - "${MYSQL_PORT}:3306"
     restart: always
     networks:
       skeleton:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: skeleton-phpmyadmin
+    container_name: ${APPLICATION_NAME}-phpmyadmin
     depends_on:
       - mysql
     environment:
