@@ -1,1 +1,5 @@
+# Nginx logs
+docker/nginx/logs
+
+# Editor files
 .idea
