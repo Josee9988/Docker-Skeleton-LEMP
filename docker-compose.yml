@@ -15,7 +15,7 @@ services:
       - .:/application
       - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     ports:
-      - "8088:80"
+      - "8000:80"
     networks:
       skeleton:
 
@@ -40,10 +40,11 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=skeletondb
-      - MYSQL_USER=skeleton
-      - MYSQL_PASSWORD=root
+      - MYSQL_USER=dev
+      - MYSQL_PASSWORD=1234
     ports:
-      - "8090:3306"
+      - "4306:3306"
+    restart: always
     networks:
       skeleton:
 
@@ -54,7 +55,7 @@ services:
       - php-fpm
       - mysql
     ports:
-      - "8089:80"
+      - "9000:80"
     environment:
       PMA_HOST: mysql
       MYSQL_USER: root
