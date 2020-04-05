@@ -9,7 +9,7 @@ services:
     container_name: skeleton-nginx-webserver
     working_dir: /application
     env_file:
-      - "docker/.env.docker"
+      - ".env.docker"
     depends_on:
       - php-fpm
       - mysql
@@ -23,11 +23,11 @@ services:
       skeleton:
 
   php-fpm:
-    build: docker/
+    build: ""
     container_name: skeleton-php-fpm
     working_dir: /application
     env_file:
-      - "docker/.env.docker"
+      - ".env.docker"
     tty: true
     volumes:
       - .:/application
@@ -41,7 +41,7 @@ services:
     working_dir: /application
     tty: true
     env_file:
-      - "docker/.env.docker"
+      - ".env.docker"
     volumes:
       - .:/application
     environment:
