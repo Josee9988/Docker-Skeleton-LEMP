@@ -1,4 +1,4 @@
-# Nginx logs
+# Nginx logs (MUST ADD IN YOUR .gitignore)
 docker/nginx/logs
 
 # Editor files
