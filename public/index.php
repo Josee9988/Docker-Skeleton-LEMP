@@ -15,10 +15,12 @@
     <ol>
         <li>Replace the public/index.php with your own.</li>
         <li>Add <strong><code>docker/nginx/logs</code></strong> in your <strong>.gitignore</strong> file.</li>
-        <li>Copy the "Docker Skeleton LEMP Config" from the <strong>.env</strong> file into your own
+        <li>Copy the "Docker-Skeleton-LEMP-Config" from the <strong>.env</strong> file into your own
             <strong>.env</strong> file.
         </li>
         <li>Run the environment with: <strong><code>docker-compose up -d</code></strong></li>
+        <li>If you modify the MYSQL .env variables <i>after</i> building the environment you can always reset
+            the data with: <code><strong> docker-compose rm -v </strong></code></li>
     </ol>
 </div>
 <br>
