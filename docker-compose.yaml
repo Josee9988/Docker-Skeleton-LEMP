@@ -22,12 +22,12 @@ services:
 
   php-fpm:
     build: "./docker"
-    container_name: ${APPLICATION_NAME}-php-fpm
+    container_name: ${APPLICATION_NAME}-phpfpm
     working_dir: /application
     tty: true
     volumes:
       - .:/application
-      - ./docker/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
+      - ./docker/php/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
     networks:
       skeleton:
 
@@ -38,6 +38,7 @@ services:
     tty: true
     volumes:
       - .:/application
+      - ./docker/mysql/mysql-data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}

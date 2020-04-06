@@ -1,5 +1,2 @@
-# Nginx logs (MUST ADD IN YOUR .gitignore)
-docker/nginx/logs
-
-# Editor files
+# IDE files
 .idea

@@ -1,0 +1,9 @@
+# Nginx logs
+/nginx/logs
+
+# MySQL data
+mysql/mysql-backup/*
+mysql/mysql-data/*
+
+!mysql/mysql-backup/.gitkeep
+!mysql/mysql-data/.gitkeep
