@@ -6,7 +6,7 @@ networks:
 services:
   nginx:
     image: nginx:alpine
-    container_name: ${APPLICATION_NAME}-nginx-webserver
+    container_name: ${APPLICATION_NAME}-nginx
     working_dir: /application
     depends_on:
       - php-fpm
@@ -32,17 +32,17 @@ services:
       skeleton:
 
   mysql:
-    image: mysql:8.0
+    image: mysql:latest
     container_name: ${APPLICATION_NAME}-mysql
     working_dir: /application
     tty: true
     volumes:
       - .:/application
     environment:
-      MYSQL_ROOT_PASSWORD: $${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: $${MYSQL_DATABASE}
-      MYSQL_USER: $${MYSQL_USER}
-      MYSQL_PASSWORD: $${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
       - "${MYSQL_PORT}:3306"
     restart: always
@@ -55,9 +55,7 @@ services:
     depends_on:
       - mysql
     environment:
-      PMA_HOST: mysql
-      MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: $${MYSQL_ROOT_PASSWORD}
+      PMA_HOST: ${APPLICATION_NAME}-mysql
     ports:
       - "${PHPMYADMIN_PORT}:80"
     tty: false
