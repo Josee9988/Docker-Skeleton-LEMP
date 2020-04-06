@@ -6,7 +6,7 @@ networks:
 services:
   nginx:
     image: nginx:alpine
-    container_name: ${APPLICATION_NAME}-nginx-webserver
+    container_name: ${APPLICATION_NAME}-nginx
     working_dir: /application
     depends_on:
       - php-fpm
