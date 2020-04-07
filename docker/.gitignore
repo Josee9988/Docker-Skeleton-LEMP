@@ -1,9 +1,8 @@
 # Nginx logs
 /nginx/logs
 
-# MySQL data
+# MySQL data (mysql-backup is not created, but can be created by you to do a simple backup)
 mysql/mysql-backup/*
 mysql/mysql-data/*
 
-!mysql/mysql-backup/.gitkeep
 !mysql/mysql-data/.gitkeep
