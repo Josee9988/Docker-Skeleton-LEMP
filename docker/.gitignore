@@ -1,8 +1,14 @@
-# Nginx logs
-/nginx/logs
+# Logs
+/nginx/logs/*
+!nginx/logs/.gitkeep
+
+/mysql/logs/*
+!mysql/logs/.gitkeep
+
+/php/logs/*
+!php/logs/.gitkeep
 
 # MySQL data (mysql-backup is not created, but can be created by you to do a simple backup)
 mysql/mysql-backup/*
 mysql/mysql-data/*
-
 !mysql/mysql-data/.gitkeep

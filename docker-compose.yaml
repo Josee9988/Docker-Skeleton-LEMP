@@ -28,6 +28,7 @@ services:
     volumes:
       - .:/application
       - ./docker/php/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
+      - ./docker/php/logs/errors.log:/var/log/php-fpm/errors.log
     networks:
       skeleton:
 
@@ -39,6 +40,7 @@ services:
     volumes:
       - .:/application
       - ./docker/mysql/mysql-data:/var/lib/mysql
+      - ./docker/mysql/logs/mysqld.log:/var/log/mysqld.log
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
