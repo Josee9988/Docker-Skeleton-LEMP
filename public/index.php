@@ -13,14 +13,15 @@
         environment</h3>
 
     <ol>
-        <li>Replace the public/index.php with your own.</li>
-        <li>Add <strong><code>docker/nginx/logs</code></strong> in your <strong>.gitignore</strong> file.</li>
+        <li>Replace the public/index.php with your own. (create your own Symfony/Laravel/PHP project maintaining the
+            <strong>/docker/</strong> directory and the <strong>docker-compose.yaml</strong> file.)</li>
         <li>Copy the "Docker-Skeleton-LEMP-Config" from the <strong>.env</strong> file into your own
             <strong>.env</strong> file.
         </li>
         <li>Run the environment with: <strong><code>docker-compose up -d</code></strong></li>
         <li>If you modify the MYSQL .env variables <i>after</i> building the environment you can always reset
-            the data with: <code><strong> docker-compose rm -v </strong></code></li>
+            the data with: <code><strong> sudo rm -rfv docker/mysql/mysql-data/ && mkdir -p docker/mysql/mysql-data &&
+                    docker-compose up -d --build --force-recreate </strong></code></li>
     </ol>
 </div>
 <br>
@@ -28,3 +29,8 @@
 
 <?php
 phpinfo();
+?>
+
+<!-- --- --- --- !! EXAMPLE FILE, PLEASE REPLACE THIS FILE WITH YOUR OWN "index.php" !! --- --- --- -->
+<!-- --- --- --- !! EXAMPLE FILE, PLEASE REPLACE THIS FILE WITH YOUR OWN "index.php" !! --- --- --- -->
+<!-- --- --- --- !! EXAMPLE FILE, PLEASE REPLACE THIS FILE WITH YOUR OWN "index.php" !! --- --- --- -->

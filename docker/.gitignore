@@ -2,9 +2,6 @@
 /nginx/logs/*
 !nginx/logs/.gitkeep
 
-/mysql/logs/*
-!mysql/logs/.gitkeep
-
 /php/logs/*
 !php/logs/.gitkeep
 
