@@ -40,7 +40,6 @@ services:
     volumes:
       - .:/application
       - ./docker/mysql/mysql-data:/var/lib/mysql
-      - ./docker/mysql/logs/mysqld.log:/var/log/mysqld.log
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}

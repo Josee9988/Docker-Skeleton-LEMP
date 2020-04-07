@@ -4,6 +4,8 @@ Simple docker setup that allows you to run applications such as `Symfony` `Larav
 
 This LEMP + composer stack also includes PhpMyAdmin to allow you to manipulate your data even easier.
 
+It is also shipped with _vim_, _nano_, _curl_, and many more useful tools!
+
 Do you want to help us improve the environment or did you found a bug?
 **[Let us know](https://github.com/Josee9988/Docker-Skeleton-LEMP/issues)**.
 
@@ -53,7 +55,6 @@ Do you want to help us improve the environment or did you found a bug?
      - Copy the '_Docker-Skeleton-LEMP-Config_' .env config to not lose your configuration.
      - Create/copy your new Symfony/Laravel/whatever files maintaining the `/docker/` directory and the `docker-compose.yaml` file.
      - Add the '_Docker-Skeleton-LEMP-Config_' .env config in your new .env file.
-     - Add `docker/nginx/logs` to the `.gitignore` file, to not upload the nginx logs.
      
 ---
 
@@ -73,9 +74,13 @@ If you want to run a specific composer or MySQL commands or any kind of command 
 
 NOTE: '_skeletonApp_' is the default application name. If you change this value in the .env file make sure to run the commands with your own project name. 
 
+- Access MySQL terminal.
+
 ```bash
 docker exec -it skeletonApp-mysql bash # to access MySQL cli
 ```
+
+- Access composer, and your own project.
 
 ```bash
 docker exec -it skeletonApp-php-fpm bash # to run any other command inside the container
@@ -89,12 +94,13 @@ docker exec -it skeletonApp-php-fpm bash # to run any other command inside the c
 .
 ├── docker
 │   ├── Dockerfile
+│   ├── mysql
+│   │   └── mysql-data
 │   ├── nginx
 │   │   ├── default.conf
 │   │   └── logs
-│   │       ├── access.log
-│   │       └── error.log
-│   └── php-fpm
+│   └── php
+│       ├── logs
 │       └── php-ini-overrides.ini
 ├── docker-compose.yaml
 ├── LICENSE
@@ -106,17 +112,25 @@ docker exec -it skeletonApp-php-fpm bash # to run any other command inside the c
 
 ---
 
-# Restart (MySQL) settings
+# Restart (MySQL) settings/container
 
-If you change your MySQL environment variables you will have to re-create the docker container.
+If you should your MySQL environment variables you will have to re-create the docker container.
+
+- Remove all the mysql data
 
     ```bash
-    docker-compose rm -v # will reset all container settings.
+    sudo rm -rfv docker/mysql/mysql-data/ && mkdir -p docker/mysql/mysql-data
     ```
-Then, you can restart you can re-run your app.
+
+- Recreate the container
 
     ```bash
-    docker-compose build && coker-compose up
+    docker-compose up -d --build --force-recreate # will rebuild the container.
+    ```
+- Then, you can restart you can re-run your app as normal.
+
+    ```bash
+    docker-compose up -d
     ```
 
 ---
