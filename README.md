@@ -1,8 +1,8 @@
 # **Docker LEMP + PhpMyAdmin**
 
-Simple docker setup that allows you to run applications such as `Symfony` `Laravel` or any custom *PHP-like* project.
+`Simple docker environment` that allows you to run applications such as `Symfony` `Laravel` or any custom *PHP-like* project.
 
-This LEMP + composer stack also includes PhpMyAdmin to allow you to manipulate your data even easier.
+This **LEMP + composer** stack also includes **PhpMyAdmin** to allow you to manipulate your data even easier.
 
 It is also shipped with _vim_, _nano_, _curl_, and many more useful tools!
 
@@ -40,7 +40,7 @@ Do you want to help us improve the environment or did you found a bug?
     ###> Docker-Skeleton-LEMP-Config ###
     ```
 
-4. Build and test the container is successfully working
+4. **Build** and test the container is successfully working
 
     ```bash
     docker-compose up -d
@@ -50,10 +50,10 @@ Do you want to help us improve the environment or did you found a bug?
     NOTE: If you change the 'HTTP_PORT' you will have to specify the port at the end of the URL.
    - Visit the PhpMyAdmin page at: `http://localhost:9000` and log in: (_root/root_ or _dev/1234_)
    
-5. Initialize your Symfony/Laravel/whatever app.
+5. **Initialize** your Symfony/Laravel/PHP app.
 
-     - Copy the '_Docker-Skeleton-LEMP-Config_' .env config to not lose your configuration.
-     - Create/copy your new Symfony/Laravel/whatever files maintaining the `/docker/` directory and the `docker-compose.yaml` file.
+     - Copy the '_Docker-Skeleton-LEMP-Config_' .env config to your clipboard to not lose your configuration.
+     - Create/copy your new **Symfony/Laravel/PHP** files keeping the `/docker/` directory and the `docker-compose.yaml` file.
      - Add the '_Docker-Skeleton-LEMP-Config_' .env config in your new .env file.
      
 ---
