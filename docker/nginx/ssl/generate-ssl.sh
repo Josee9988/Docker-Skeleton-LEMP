@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Set the TLD domain we want to use
-BASE_DOMAIN="skeletonApp.local"
+BASE_DOMAIN=$APPLICATION_DOMAIN
 
 # Days for the cert to live
 DAYS=1095

@@ -1,5 +1,14 @@
 FROM phpdockerio/php74-fpm:latest
 
+ARG APPLICATION_DOMAIN
+ENV APPLICATION_DOMAIN $APPLICATION_DOMAIN
+
+COPY nginx/ssl/generate-ssl.sh /etc/nginx/generate-ssl.sh
+RUN chmod +x /etc/nginx/generate-ssl.sh
+
+RUN cd /etc/nginx && ./generate-ssl.sh
+
+
 WORKDIR "/application"
 
 # Fix debconf warnings upon build
