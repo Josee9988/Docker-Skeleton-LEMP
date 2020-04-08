@@ -6,6 +6,10 @@ This **LEMP + composer** stack also includes **PhpMyAdmin** to allow you to mani
 
 It is also shipped with _vim_, _nano_, _curl_, and many more useful tools!
 
+**[Symfony installation guide](https://github.com/Josee9988/Docker-Skeleton-LEMP/wiki/Symfony-guide)** 🔥
+
+Check the **[Wiki](https://github.com/Josee9988/Docker-Skeleton-LEMP/wiki)** for further explanation.
+
 Do you want to help us improve the environment or did you found a bug?
 **[Let us know](https://github.com/Josee9988/Docker-Skeleton-LEMP/issues)**.
 
@@ -83,7 +87,7 @@ docker exec -it skeletonApp-mysql bash # to access MySQL cli
 - Access composer, and your own project.
 
 ```bash
-docker exec -it skeletonApp-php-fpm bash # to run any other command inside the container
+docker exec -it skeletonApp-phpfpm bash # to run any other command inside the container
 ```
 
 ---
