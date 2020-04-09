@@ -1,12 +1,13 @@
 # **Docker LEMP + PhpMyAdmin**
 
-`Simple docker environment` that allows you to run applications such as `Symfony` `Laravel` or any custom *PHP-like* project.
+**Simple docker environment** that allows you to run applications such as `Symfony` `Laravel` or any custom _**PHP**-like_ project.
 
 This **LEMP + composer** stack also includes **PhpMyAdmin** to allow you to manipulate your data even easier.
 
 It is also shipped with _vim_, _nano_, _curl_, and many more useful tools!
 
-**[Symfony installation guide](https://github.com/Josee9988/Docker-Skeleton-LEMP/wiki/Symfony-guide)** 🔥
+**[Symfony installation guide](https://github.com/Josee9988/Docker-Skeleton-LEMP/wiki/Symfony-guide)** 🔥|
+**[Laravel installation guide](https://github.com/Josee9988/Docker-Skeleton-LEMP/wiki/Laravel-guide)** 🚀
 
 Check the **[Wiki](https://github.com/Josee9988/Docker-Skeleton-LEMP/wiki)** for further explanation.
 
@@ -72,7 +73,7 @@ Do you want to help us improve the environment or did you found a bug?
 
 ---
 
-# Connect with terminal to run commands inside the container
+# Connect with the terminal to run commands inside the container
 
 If you want to run a specific composer or MySQL commands or any kind of command inside the container you can easily do it with:
 
@@ -81,7 +82,7 @@ NOTE: '_skeletonApp_' is the default application name. If you change this value 
 - Access MySQL terminal.
 
 ```bash
-docker exec -it skeletonApp-mysql bash # to access MySQL cli
+docker exec -it skeletonApp-mysql bash # to access MySQL CLI
 ```
 
 - Access composer, and your own project.
@@ -120,7 +121,7 @@ docker exec -it skeletonApp-phpfpm bash # to run any other command inside the co
 
 If you should your MySQL environment variables you will have to re-create the docker container.
 
-- Remove all the mysql data
+- Remove all the MySQL data
 
     ```bash
     sudo rm -rfv docker/mysql/mysql-data/ && mkdir -p docker/mysql/mysql-data
